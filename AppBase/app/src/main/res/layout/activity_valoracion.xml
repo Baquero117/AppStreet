@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ECECEC"
+            tools:context=".ValoracionActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+        <TextView
+                android:id="@+id/tituloValoracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GESTIÓN DE VALORACIONES"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+
+        <EditText
+                android:id="@+id/id_valoracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Valoración"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/id_cliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Cliente"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/id_producto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Producto"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/calificacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Calificación (1-5)"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/comentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comentario"
+                android:inputType="text"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/fecha_valoracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha de Valoración (YYYY-MM-DD)"
+                android:inputType="date"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+            <Button
+                    android:id="@+id/btnCrearValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CREAR"
+                    android:onClick="crearValoracion"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnMostrarValoraciones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MOSTRAR"
+                    android:onClick="mostrarValoraciones"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnActualizarValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTUALIZAR"
+                    android:onClick="actualizarValoracion"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#FF9800"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnEliminarValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ELIMINAR"
+                    android:onClick="eliminarValoracion"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Listado de Valoraciones"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyValoraciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+
+        <Button
+                android:id="@+id/buttonSegundaActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ir a Productos"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#9C27B0"
+                android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>

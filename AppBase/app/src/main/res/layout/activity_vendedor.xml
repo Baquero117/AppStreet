@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ECECEC"
+            tools:context=".VendedorActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+        <TextView
+                android:id="@+id/tituloVendedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GESTIÓN DE VENDEDORES"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+
+        <EditText
+                android:id="@+id/id_vendedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Vendedor"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/apellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"
+                android:inputType="textPersonName"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+        <EditText
+                android:id="@+id/correo_electronico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo electrónico"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teléfono"
+                android:inputType="phone"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <EditText
+                android:id="@+id/contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#6200EE" />
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+            <Button
+                    android:id="@+id/btnCrearVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CREAR"
+                    android:onClick="crearVendedor"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnMostrarVendedores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MOSTRAR"
+                    android:onClick="mostrarVendedores"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnActualizarVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTUALIZAR"
+                    android:onClick="actualizarVendedor"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#FF9800"
+                    android:textColor="#FFFFFF" />
+
+            <Button
+                    android:id="@+id/btnEliminarVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ELIMINAR"
+                    android:onClick="eliminarVendedor"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Listado de Vendedores"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyVendedores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+
+        <Button
+                android:id="@+id/buttonSegundaActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ir a Productos"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#9C27B0"
+                android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>

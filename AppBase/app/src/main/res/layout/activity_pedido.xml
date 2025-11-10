@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".PedidoActivity"
+            android:fillViewport="true"
+            android:background="#F8F8F8">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+                android:id="@+id/tvTituloPedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestión de Pedidos"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:paddingBottom="10dp" />
+
+
+        <EditText
+                android:id="@+id/id_pedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Pedido"
+                android:inputType="number"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/id_cliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Cliente"
+                android:inputType="number"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/fecha_pedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha del pedido (YYYY-MM-DD)"
+                android:inputType="text"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total del pedido"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Estado del pedido"
+                android:inputType="text"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="20dp"/>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crear"
+                    android:onClick="crearPedido"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mostrar"
+                    android:onClick="mostrarPedidos"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Actualizar"
+                    android:onClick="actualizarPedido"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:onClick="eliminarPedido"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF"/>
+        </LinearLayout>
+
+
+        <Button
+                android:id="@+id/buttonSegundaActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ir a Productos"
+                android:backgroundTint="#9C27B0"
+                android:textColor="#FFF"
+                android:layout_marginBottom="15dp"/>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lista de pedidos:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#222" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:background="#EEE"
+                android:padding="8dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ClienteActivity"
+            android:fillViewport="true"
+            android:background="#F8F8F8">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tvTituloCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestión de Clientes"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:paddingBottom="10dp" />
+
+        <EditText
+                android:id="@+id/id_cliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Cliente"
+                android:inputType="number"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/apellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dirección"
+                android:inputType="textPostalAddress"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teléfono"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
+
+        <EditText
+                android:id="@+id/correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo electrónico"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crear"
+                    android:onClick="crearCliente"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mostrar"
+                    android:onClick="mostrarClientes"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Actualizar"
+                    android:onClick="actualizarCliente"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:onClick="eliminarCliente"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF"/>
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/buttonSegundaActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ir a Categorías"
+                android:backgroundTint="#9C27B0"
+                android:textColor="#FFF"
+                android:layout_marginBottom="15dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lista de clientes:"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#222" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyClientes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:background="#EEE"
+                android:padding="8dp"/>
+    </LinearLayout>
+</ScrollView>
