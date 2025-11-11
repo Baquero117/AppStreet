@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ import retrofit2.Response
 
 
 
-class ProductoActivity : AppCompatActivity() {
+class ProductoActivity : MenuPrincipalActivity() {
     private lateinit var producto: Producto
 
     @SuppressLint("MissingInflatedId")
@@ -31,15 +30,19 @@ class ProductoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
+
     }
 
-    // -------------------- CREAR PRODUCTO --------------------
+
+
+
+
     fun crearProducto(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
         val descripcion = findViewById<EditText>(R.id.descripcion)
@@ -76,7 +79,7 @@ class ProductoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR PRODUCTOS --------------------
+
     fun mostrarProductos(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyProductos)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -102,7 +105,7 @@ class ProductoActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR PRODUCTO --------------------
+
     fun actualizarProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_producto)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -140,7 +143,7 @@ class ProductoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR PRODUCTO --------------------
+
     fun eliminarProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_producto)
 

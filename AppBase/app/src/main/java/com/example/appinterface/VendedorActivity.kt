@@ -30,14 +30,15 @@ class VendedorActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR VENDEDOR --------------------
+
     fun crearVendedor(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
         val apellido = findViewById<EditText>(R.id.apellido)
@@ -72,7 +73,7 @@ class VendedorActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR VENDEDORES --------------------
+
     fun mostrarVendedores(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyVendedores)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -98,7 +99,7 @@ class VendedorActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR VENDEDOR --------------------
+
     fun actualizarVendedor(v: View) {
         val id = findViewById<EditText>(R.id.id_vendedor)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -134,7 +135,7 @@ class VendedorActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR VENDEDOR --------------------
+
     fun eliminarVendedor(v: View) {
         val id = findViewById<EditText>(R.id.id_vendedor)
 

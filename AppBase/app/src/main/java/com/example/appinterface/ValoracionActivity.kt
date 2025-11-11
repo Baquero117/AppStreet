@@ -31,14 +31,15 @@ class ValoracionActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR VALORACIÓN --------------------
+
     fun crearValoracion(v: View) {
         val idCliente = findViewById<EditText>(R.id.id_cliente)
         val idProducto = findViewById<EditText>(R.id.id_producto)
@@ -73,7 +74,7 @@ class ValoracionActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR VALORACIONES --------------------
+
     fun mostrarValoraciones(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyValoraciones)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -99,7 +100,7 @@ class ValoracionActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR VALORACIÓN --------------------
+
     fun actualizarValoracion(v: View) {
         val id = findViewById<EditText>(R.id.id_valoracion)
         val idCliente = findViewById<EditText>(R.id.id_cliente)
@@ -135,7 +136,7 @@ class ValoracionActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR VALORACIÓN --------------------
+
     fun eliminarValoracion(v: View) {
         val id = findViewById<EditText>(R.id.id_valoracion)
 

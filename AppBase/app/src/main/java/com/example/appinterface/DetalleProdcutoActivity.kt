@@ -5,6 +5,7 @@ package com.example.appinterface
 import com.example.appinterface.DataClass.Detalle_Producto
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
+import android.content.Intent
 
 import android.os.Bundle
 import android.view.View
@@ -26,14 +27,15 @@ class DetalleProdcutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_producto)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR DETALLE PRODUCTO --------------------
+
     fun crearDetalleProducto(v: View) {
         val talla = findViewById<EditText>(R.id.talla)
         val color = findViewById<EditText>(R.id.color)
@@ -70,7 +72,7 @@ class DetalleProdcutoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR DETALLES PRODUCTO --------------------
+
     fun mostrarDetallesProducto(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyDetalles)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -96,7 +98,7 @@ class DetalleProdcutoActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR DETALLE PRODUCTO --------------------
+
     fun actualizarDetalleProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_detalle_producto)
         val talla = findViewById<EditText>(R.id.talla)
@@ -134,7 +136,7 @@ class DetalleProdcutoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR DETALLE PRODUCTO --------------------
+
     fun eliminarDetalleProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_detalle_producto)
 

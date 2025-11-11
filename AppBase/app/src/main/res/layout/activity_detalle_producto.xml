@@ -4,7 +4,7 @@
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".DetalleProductoActivity"
+            tools:context=".DetalleProdcutoActivity"
             android:fillViewport="true"
             android:background="#F8F8F8">
 
@@ -146,6 +146,15 @@
                     android:backgroundTint="#F44336"
                     android:textColor="#FFF"/>
         </LinearLayout>
+
+        <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volver al Menú Principal"
+                android:backgroundTint="#FF5722"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
 
         <TextView
                 android:layout_width="wrap_content"

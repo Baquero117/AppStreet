@@ -20,6 +20,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,3 +56,4 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
 }
+

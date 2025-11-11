@@ -32,14 +32,15 @@ class CategoriaActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR CATEGORÍA --------------------
+
     fun crearCategoria(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
 
@@ -63,7 +64,7 @@ class CategoriaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR CATEGORÍAS --------------------
+
     fun mostrarCategorias(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyCategorias)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -89,7 +90,7 @@ class CategoriaActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR CATEGORÍA --------------------
+
     fun actualizarCategoria(v: View) {
         val id = findViewById<EditText>(R.id.id_categoria)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -114,7 +115,7 @@ class CategoriaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR CATEGORÍA --------------------
+
     fun eliminarCategoria(v: View) {
         val id = findViewById<EditText>(R.id.id_categoria)
 

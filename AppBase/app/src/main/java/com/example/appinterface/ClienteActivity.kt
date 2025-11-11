@@ -1,4 +1,5 @@
 package com.example.appinterface
+
 import com.example.appinterface.DataClass.Cliente
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
@@ -30,21 +31,22 @@ class ClienteActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR CLIENTE --------------------
+
     fun crearCliente(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
         val apellido = findViewById<EditText>(R.id.apellido)
-        val contrasena = findViewById<EditText>(R.id.contrasena)
-        val direccion = findViewById<EditText>(R.id.direccion)
+        val correoElectronico = findViewById<EditText>(R.id.correo_electronico)
         val telefono = findViewById<EditText>(R.id.telefono)
-        val correo = findViewById<EditText>(R.id.correo)
+        val direccion = findViewById<EditText>(R.id.direccion)
+        val contrasena = findViewById<EditText>(R.id.contrasena)
 
         cliente = Cliente(
             0,
@@ -53,10 +55,10 @@ class ClienteActivity : AppCompatActivity() {
             contrasena.text.toString(),
             direccion.text.toString(),
             telefono.text.toString(),
-            correo.text.toString()
+            correoElectronico.text.toString()
         )
 
-        if (nombre.text.isNotEmpty() && apellido.text.isNotEmpty()) {
+        if (nombre.text.isNotEmpty() && correoElectronico.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearCliente(cliente)
                 .enqueue(object : Callback<Cliente> {
                     override fun onResponse(call: Call<Cliente>, response: Response<Cliente>) {
@@ -74,7 +76,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR CLIENTES --------------------
+
     fun mostrarClientes(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyClientes)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -87,7 +89,7 @@ class ClienteActivity : AppCompatActivity() {
                         val adapter = ClienteAdapter(data)
                         recyclerView.adapter = adapter
                     } else {
-                        Toast.makeText(this@ClienteActivity, "No hay clientes disponibles", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ClienteActivity, "No hay clientes registrados", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this@ClienteActivity, "Error en la respuesta de la API", Toast.LENGTH_SHORT).show()
@@ -100,15 +102,15 @@ class ClienteActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR CLIENTE --------------------
+
     fun actualizarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
         val nombre = findViewById<EditText>(R.id.nombre)
         val apellido = findViewById<EditText>(R.id.apellido)
-        val contrasena = findViewById<EditText>(R.id.contrasena)
-        val direccion = findViewById<EditText>(R.id.direccion)
+        val correoElectronico = findViewById<EditText>(R.id.correo_electronico)
         val telefono = findViewById<EditText>(R.id.telefono)
-        val correo = findViewById<EditText>(R.id.correo)
+        val direccion = findViewById<EditText>(R.id.direccion)
+        val contrasena = findViewById<EditText>(R.id.contrasena)
 
         if (!id.text.isNullOrEmpty()) {
             val clienteActualizado = Cliente(
@@ -118,7 +120,7 @@ class ClienteActivity : AppCompatActivity() {
                 contrasena.text.toString(),
                 direccion.text.toString(),
                 telefono.text.toString(),
-                correo.text.toString()
+                correoElectronico.text.toString()
             )
 
             RetrofitInstance.api2kotlin.actualizarCliente(id.text.toString().toInt(), clienteActualizado)
@@ -138,7 +140,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR CLIENTE --------------------
+
     fun eliminarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
 

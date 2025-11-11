@@ -13,20 +13,44 @@
         android:usesCleartextTraffic="true">
 
         <!-- primera Actividad -->
-		<activity
-				android:name=".MainActivity"
-				android:exported="true">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
+        <activity
+                android:name=".MenuPrincipalActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-				<category android:name="android.intent.category.LAUNCHER"/>
-			</intent-filter>
-		</activity>
 
-		<!-- Segunda actividad -->
+        <!-- Segunda actividad -->
 		<activity android:name=".ProductoActivity"
 				  android:exported="true">
 		</activity>
+        <activity android:name=".CategoriaActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".ClienteActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".DetalleProdcutoActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".PedidoActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".PromocionActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".ValoracionActivity"
+                  android:exported="true">
+        </activity>
+
+        <activity android:name=".VendedorActivity"
+                  android:exported="true">
+        </activity>
+
+
 	</application>
 
 </manifest>

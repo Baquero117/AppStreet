@@ -17,8 +17,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiServicesKotlin {
-    @GET("/usuarios")
-    fun getPersonas(): Call<List<String>>
+
 
 
     @GET("categoria")
@@ -34,118 +33,105 @@ interface ApiServicesKotlin {
     fun eliminarCategoria(@Path("id") id: Int): Call<Void>
 
 
-    @GET("/clientes")
-    fun getClientes(): Call<List<Cliente>>
-
-    @POST("/clientes")
-    fun crearCliente(@Body cliente: Cliente): Call<Cliente>
-
-    @PUT("/clientes/{id}")
-    fun actualizarCliente(@Path("id") id: Int, @Body cliente: Cliente): Call<Cliente>
-
-    @DELETE("/clientes/{id}")
-    fun eliminarCliente(@Path("id") id: Int): Call<Void>
 
 
-
-
-
-    @GET("/detalle_productos")
+    @GET("detalle_producto")
     fun getDetalleProducto(): Call<List<Detalle_Producto>>
 
-    @POST("/detalle_productos")
+    @POST("detalle_producto")
     fun crearDetalleProducto(@Body detalleProducto: Detalle_Producto): Call<Detalle_Producto>
 
-    @PUT("/detalle_productos/{id}")
+    @PUT("detalle_producto/{id}")
     fun actualizarDetalleProducto(@Path("id") id: Int, @Body detalleProducto: Detalle_Producto): Call<Detalle_Producto>
 
-    @DELETE("/detalle_productos/{id}")
+    @DELETE("detalle_producto/{id}")
     fun eliminarDetalleProducto(@Path("id") id: Int): Call<Void>
 
 
-    @GET("/producto")
+    @GET("producto")
     fun getProductos(): Call<List<Producto>>
 
-    @POST("/producto")
+    @POST("producto")
     fun crearProducto(@Body producto: Producto): Call<Producto>
 
-    @PUT("/producto/{id}")
+    @PUT("producto/{id}")
     fun actualizarProducto(@Path("id") id: Int, @Body producto: Producto): Call<Producto>
 
-    @DELETE("/producto/{id}")
+    @DELETE("producto/{id}")
     fun eliminarProducto(@Path("id") id: Int): Call<Void>
 
 
 
 
 
-
-
-
-
-
-    @GET("/pedidos")
+    @GET("pedido")
     fun getPedidos(): Call<List<Pedido>>
 
-    @POST("/pedidos")
+    @POST("pedido")
     fun crearPedido(@Body pedido: Pedido): Call<Pedido>
 
-    @PUT("/pedidos/{id}")
+    @PUT("pedido/{id}")
     fun actualizarPedido(@Path("id") id: Int, @Body pedido: Pedido): Call<Pedido>
 
-    @DELETE("/pedidos/{id}")
+    @DELETE("pedido/{id}")
     fun eliminarPedido(@Path("id") id: Int): Call<Void>
 
 
 
 
 
-    @GET("/promociones")
+    @GET("promocion")
     fun getPromociones(): Call<List<Promocion>>
 
-    @POST("/promociones")
+    @POST("promocion")
     fun crearPromocion(@Body promocion: Promocion): Call<Promocion>
 
-    @PUT("/promociones/{id}")
+    @PUT("promocion{id}")
     fun actualizarPromocion(@Path("id") id: Int, @Body promocion: Promocion): Call<Promocion>
 
-    @DELETE("/promociones/{id}")
+    @DELETE("promocion/{id}")
     fun eliminarPromocion(@Path("id") id: Int): Call<Void>
 
-    @GET("/valoraciones")
+    @GET("valoracion")
     fun getValoraciones(): Call<List<Valoracion>>
 
-    @POST("/valoraciones")
+    @POST("valoracion")
     fun crearValoracion(@Body valoracion: Valoracion): Call<Valoracion>
 
-    @PUT("/valoraciones/{id}")
+    @PUT("valoracion/{id}")
     fun actualizarValoracion(@Path("id") id: Int, @Body valoracion: Valoracion): Call<Valoracion>
 
-    @DELETE("/valoraciones/{id}")
+    @DELETE("/valoracion/{id}")
     fun eliminarValoracion(@Path("id") id: Int): Call<Void>
 
 
+    @GET("cliente")
+    fun getClientes(): Call<List<Cliente>>
+
+    @POST("cliente")
+    fun crearCliente(@Body cliente: Cliente): Call<Cliente>
+
+    @PUT("cliente/{id}")
+    fun actualizarCliente(@Path("id") id: Int, @Body cliente: Cliente): Call<Cliente>
+
+    @DELETE("cliente/{id}")
+    fun eliminarCliente(@Path("id") id: Int): Call<Void>
 
 
 
 
 
 
-
-
-    @GET("/vendedor")
+    @GET("vendedor")
     fun getVendedores(): Call<List<Vendedor>>
 
-    // -------------------- CREAR VENDEDOR --------------------
-    @POST("/vendedores")
+    @POST("vendedor")
     fun crearVendedor(@Body vendedor: Vendedor): Call<Vendedor>
 
-    // -------------------- ACTUALIZAR VENDEDOR --------------------
-    @PUT("/vendedores/{id}")
+    @PUT("vendedor/{id}")
     fun actualizarVendedor(@Path("id") id: Int, @Body vendedor: Vendedor): Call<Vendedor>
 
-    // -------------------- ELIMINAR VENDEDOR --------------------
-    @DELETE("/vendedores/{id}")
+    @DELETE("vendedor/{id}")
     fun eliminarVendedor(@Path("id") id: Int): Call<Void>
 
 

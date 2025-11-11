@@ -30,14 +30,15 @@ class PromocionActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR PROMOCIÓN --------------------
+
     fun crearPromocion(v: View) {
         val descripcion = findViewById<EditText>(R.id.descripcion)
         val descuento = findViewById<EditText>(R.id.descuento)
@@ -72,7 +73,7 @@ class PromocionActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR PROMOCIONES --------------------
+
     fun mostrarPromociones(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyPromociones)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -98,7 +99,7 @@ class PromocionActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR PROMOCIÓN --------------------
+
     fun actualizarPromocion(v: View) {
         val id = findViewById<EditText>(R.id.id_promocion)
         val descripcion = findViewById<EditText>(R.id.descripcion)
@@ -134,7 +135,7 @@ class PromocionActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR PROMOCIÓN --------------------
+
     fun eliminarPromocion(v: View) {
         val id = findViewById<EditText>(R.id.id_promocion)
 

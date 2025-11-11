@@ -4,37 +4,38 @@
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ECECEC"
-            tools:context=".VendedorActivity">
+            tools:context=".VendedorActivity"
+            android:fillViewport="true"
+            android:background="#F8F8F8">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
+        <!-- Título -->
         <TextView
-                android:id="@+id/tituloVendedor"
+                android:id="@+id/tvTituloVendedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="GESTIÓN DE VENDEDORES"
-                android:textSize="20sp"
+                android:text="Gestión de Vendedores"
+                android:textAlignment="center"
+                android:textSize="22sp"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textColor="#000000" />
+                android:textColor="#222"
+                android:paddingBottom="10dp" />
 
-
+        <!-- Campos -->
         <EditText
                 android:id="@+id/id_vendedor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="ID Vendedor"
                 android:inputType="number"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
-
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
 
         <EditText
                 android:id="@+id/nombre"
@@ -42,9 +43,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:inputType="textPersonName"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
-
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
 
         <EditText
                 android:id="@+id/apellido"
@@ -52,8 +53,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Apellido"
                 android:inputType="textPersonName"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
 
         <EditText
                 android:id="@+id/correo_electronico"
@@ -61,9 +63,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Correo electrónico"
                 android:inputType="textEmailAddress"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
-
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
 
         <EditText
                 android:id="@+id/telefono"
@@ -71,9 +73,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Teléfono"
                 android:inputType="phone"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
-
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="10dp"/>
 
         <EditText
                 android:id="@+id/contrasena"
@@ -81,84 +83,82 @@
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#6200EE" />
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="20dp"/>
 
-
+        <!-- Botones CRUD -->
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
 
             <Button
-                    android:id="@+id/btnCrearVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CREAR"
+                    android:text="Crear"
                     android:onClick="crearVendedor"
                     android:layout_margin="5dp"
                     android:backgroundTint="#4CAF50"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFF"/>
 
             <Button
-                    android:id="@+id/btnMostrarVendedores"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MOSTRAR"
+                    android:text="Mostrar"
                     android:onClick="mostrarVendedores"
                     android:layout_margin="5dp"
                     android:backgroundTint="#2196F3"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFF"/>
 
             <Button
-                    android:id="@+id/btnActualizarVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ACTUALIZAR"
+                    android:text="Actualizar"
                     android:onClick="actualizarVendedor"
                     android:layout_margin="5dp"
-                    android:backgroundTint="#FF9800"
-                    android:textColor="#FFFFFF" />
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"/>
 
             <Button
-                    android:id="@+id/btnEliminarVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ELIMINAR"
+                    android:text="Eliminar"
                     android:onClick="eliminarVendedor"
                     android:layout_margin="5dp"
                     android:backgroundTint="#F44336"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFF"/>
         </LinearLayout>
 
-
-        <TextView
+        <!-- Navegación -->
+        <Button
+                android:id="@+id/btnVolver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Listado de Vendedores"
-                android:textSize="18sp"
+                android:text="Volver al Menú Principal"
+                android:backgroundTint="#FF5722"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+
+        <!-- Lista de vendedores -->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lista de vendedores:"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:textColor="#000000" />
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#222" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyVendedores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
-
-
-        <Button
-                android:id="@+id/buttonSegundaActividad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ir a Productos"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#9C27B0"
-                android:textColor="#FFFFFF" />
+                android:scrollbars="vertical"
+                android:background="#EEE"
+                android:padding="8dp"/>
 
     </LinearLayout>
 </ScrollView>

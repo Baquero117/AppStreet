@@ -31,14 +31,15 @@ class PedidoActivity : AppCompatActivity() {
             insets
         }
 
-        val buttonGoToSecondActivity: Button = findViewById(R.id.buttonSegundaActividad)
-        buttonGoToSecondActivity.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
+        val btnVolver = findViewById<Button>(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
-    // -------------------- CREAR PEDIDO --------------------
+
     fun crearPedido(v: View) {
         val idCliente = findViewById<EditText>(R.id.id_cliente)
         val fechaPedido = findViewById<EditText>(R.id.fecha_pedido)
@@ -71,7 +72,7 @@ class PedidoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- MOSTRAR PEDIDOS --------------------
+
     fun mostrarPedidos(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyPedidos)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -97,7 +98,7 @@ class PedidoActivity : AppCompatActivity() {
         })
     }
 
-    // -------------------- ACTUALIZAR PEDIDO --------------------
+
     fun actualizarPedido(v: View) {
         val id = findViewById<EditText>(R.id.id_pedido)
         val idCliente = findViewById<EditText>(R.id.id_cliente)
@@ -131,7 +132,7 @@ class PedidoActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------- ELIMINAR PEDIDO --------------------
+
     fun eliminarPedido(v: View) {
         val id = findViewById<EditText>(R.id.id_pedido)
 

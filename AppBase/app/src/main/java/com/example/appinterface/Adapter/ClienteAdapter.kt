@@ -24,8 +24,8 @@ class ClienteAdapter(private val clientes: List<Cliente>) : RecyclerView.Adapter
         fun bind(cliente: Cliente) {
             (itemView as TextView).text =
                 "ID: ${cliente.id_cliente} | Nombre: ${cliente.nombre} ${cliente.apellido} | " +
-                        "Contraseña: ${cliente.contrasena} | Dirección: ${cliente.direccion} | " +
-                        "Teléfono: ${cliente.telefono} | Correo: ${cliente.correo_electronico}"
+                        "Correo: ${cliente.correo_electronico} | Teléfono: ${cliente.telefono} | " +
+                        "Dirección: ${cliente.direccion} | Contraseña: ${cliente.contrasena}"
         }
     }
 }
