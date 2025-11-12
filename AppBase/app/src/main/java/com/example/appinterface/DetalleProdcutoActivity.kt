@@ -1,25 +1,22 @@
 package com.example.appinterface
 
-
-
 import com.example.appinterface.DataClass.Detalle_Producto
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
 import android.content.Intent
-
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appinterface.Adapter.DetalleProductoAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 class DetalleProdcutoActivity : AppCompatActivity() {
+
     private lateinit var detalleProducto: Detalle_Producto
 
     @SuppressLint("MissingInflatedId")
@@ -34,7 +31,6 @@ class DetalleProdcutoActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     fun crearDetalleProducto(v: View) {
         val talla = findViewById<EditText>(R.id.talla)
@@ -56,8 +52,8 @@ class DetalleProdcutoActivity : AppCompatActivity() {
 
         if (talla.text.isNotEmpty() && color.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearDetalleProducto(detalleProducto)
-                .enqueue(object : Callback<Detalle_Producto> {
-                    override fun onResponse(call: Call<Detalle_Producto>, response: Response<Detalle_Producto>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Detalle creado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -65,13 +61,14 @@ class DetalleProdcutoActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Detalle_Producto>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Complete todos los campos", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     fun mostrarDetallesProducto(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyDetalles)
@@ -81,9 +78,8 @@ class DetalleProdcutoActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Detalle_Producto>>, response: Response<List<Detalle_Producto>>) {
                 if (response.isSuccessful) {
                     val data = response.body()
-                    if (data != null && data.isNotEmpty()) {
-                        val adapter = DetalleProductoAdapter(data)
-                        recyclerView.adapter = adapter
+                    if (!data.isNullOrEmpty()) {
+                        recyclerView.adapter = DetalleProductoAdapter(data)
                     } else {
                         Toast.makeText(this@DetalleProdcutoActivity, "No hay detalles disponibles", Toast.LENGTH_SHORT).show()
                     }
@@ -97,7 +93,6 @@ class DetalleProdcutoActivity : AppCompatActivity() {
             }
         })
     }
-
 
     fun actualizarDetalleProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_detalle_producto)
@@ -120,8 +115,8 @@ class DetalleProdcutoActivity : AppCompatActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarDetalleProducto(id.text.toString().toInt(), detalleActualizado)
-                .enqueue(object : Callback<Detalle_Producto> {
-                    override fun onResponse(call: Call<Detalle_Producto>, response: Response<Detalle_Producto>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Detalle actualizado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -129,13 +124,14 @@ class DetalleProdcutoActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Detalle_Producto>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Debe ingresar un ID válido", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     fun eliminarDetalleProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_detalle_producto)
@@ -155,6 +151,8 @@ class DetalleProdcutoActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Debe ingresar un ID válido", Toast.LENGTH_SHORT).show()
         }
     }
 }

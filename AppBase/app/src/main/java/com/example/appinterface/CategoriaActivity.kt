@@ -1,11 +1,13 @@
 package com.example.appinterface
 
-import com.example.appinterface.Api.RetrofitInstance
 import com.example.appinterface.DataClass.Categoria
+import com.example.appinterface.Api.RetrofitInstance
+import com.example.appinterface.Adapter.CategoriaAdapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +15,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appinterface.Adapter.CategoriaAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,21 +47,23 @@ class CategoriaActivity : AppCompatActivity() {
 
         categoria = Categoria(0, nombre.text.toString())
 
-        if (!nombre.text.isNullOrEmpty()) {
+        if (nombre.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearCategoria(categoria)
-                .enqueue(object : Callback<Categoria> {
-                    override fun onResponse(call: Call<Categoria>, response: Response<Categoria>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Categoría creada correctamente", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(applicationContext, "Error al crear categoría", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-                    override fun onFailure(call: Call<Categoria>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Por favor, ingresa un nombre", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -95,23 +98,34 @@ class CategoriaActivity : AppCompatActivity() {
         val id = findViewById<EditText>(R.id.id_categoria)
         val nombre = findViewById<EditText>(R.id.nombre)
 
-        if (!id.text.isNullOrEmpty() && !nombre.text.isNullOrEmpty()) {
-            val categoriaActualizada = Categoria(id.text.toString().toInt(), nombre.text.toString())
+        if (!id.text.isNullOrEmpty()) {
+            val categoriaActualizada = Categoria(
+                id.text.toString().toInt(),
+                nombre.text.toString()
+            )
 
-            RetrofitInstance.api2kotlin.actualizarCategoria(id.text.toString().toInt(), categoriaActualizada)
-                .enqueue(object : Callback<Categoria> {
-                    override fun onResponse(call: Call<Categoria>, response: Response<Categoria>) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, "Categoría actualizada correctamente", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(applicationContext, "Error al actualizar", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+            val call = RetrofitInstance.api2kotlin.actualizarCategoria(
+                id.text.toString().toInt(),
+                categoriaActualizada
+            )
 
-                    override fun onFailure(call: Call<Categoria>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+            call.enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(applicationContext, "Categoría actualizada correctamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Log.e("API", "Error del servidor: ${response.code()}")
+                        Toast.makeText(applicationContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
-                })
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.e("API", "Error en la conexión: ${t.message}")
+                    Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(applicationContext, "Por favor ingresa el ID de la categoría", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -126,14 +140,16 @@ class CategoriaActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Categoría eliminada correctamente", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(applicationContext, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Error al eliminar categoría", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Por favor ingresa el ID de la categoría", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -2,9 +2,11 @@ package com.example.appinterface
 
 import com.example.appinterface.DataClass.Cliente
 import com.example.appinterface.Api.RetrofitInstance
+import com.example.appinterface.Adapter.ClienteAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appinterface.Adapter.ClienteAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +40,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-
+    // 🔹 Crear cliente
     fun crearCliente(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
         val apellido = findViewById<EditText>(R.id.apellido)
@@ -60,23 +61,25 @@ class ClienteActivity : AppCompatActivity() {
 
         if (nombre.text.isNotEmpty() && correoElectronico.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearCliente(cliente)
-                .enqueue(object : Callback<Cliente> {
-                    override fun onResponse(call: Call<Cliente>, response: Response<Cliente>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Cliente creado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(applicationContext, "Error al crear cliente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-                    override fun onFailure(call: Call<Cliente>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Por favor ingresa nombre y correo", Toast.LENGTH_SHORT).show()
         }
     }
 
-
+    // 🔹 Mostrar clientes
     fun mostrarClientes(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyClientes)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -102,7 +105,7 @@ class ClienteActivity : AppCompatActivity() {
         })
     }
 
-
+    // 🔹 Actualizar cliente
     fun actualizarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -124,23 +127,27 @@ class ClienteActivity : AppCompatActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarCliente(id.text.toString().toInt(), clienteActualizado)
-                .enqueue(object : Callback<Cliente> {
-                    override fun onResponse(call: Call<Cliente>, response: Response<Cliente>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Cliente actualizado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(applicationContext, "Error al actualizar cliente", Toast.LENGTH_SHORT).show()
+                            Log.e("API", "Error del servidor: ${response.code()}")
+                            Toast.makeText(applicationContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-                    override fun onFailure(call: Call<Cliente>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.e("API", "Error de conexión: ${t.message}")
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Por favor ingresa el ID del cliente", Toast.LENGTH_SHORT).show()
         }
     }
 
-
+    // 🔹 Eliminar cliente
     fun eliminarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
 
@@ -156,9 +163,11 @@ class ClienteActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+        } else {
+            Toast.makeText(applicationContext, "Por favor ingresa el ID del cliente", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -1,4 +1,5 @@
 package com.example.appinterface
+
 import com.example.appinterface.DataClass.Valoracion
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
@@ -15,7 +16,6 @@ import com.example.appinterface.Adapter.ValoracionAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class ValoracionActivity : AppCompatActivity() {
     private lateinit var valoracion: Valoracion
@@ -39,7 +39,6 @@ class ValoracionActivity : AppCompatActivity() {
         }
     }
 
-
     fun crearValoracion(v: View) {
         val idCliente = findViewById<EditText>(R.id.id_cliente)
         val idProducto = findViewById<EditText>(R.id.id_producto)
@@ -58,8 +57,8 @@ class ValoracionActivity : AppCompatActivity() {
 
         if (comentario.text.isNotEmpty() && calificacion.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearValoracion(valoracion)
-                .enqueue(object : Callback<Valoracion> {
-                    override fun onResponse(call: Call<Valoracion>, response: Response<Valoracion>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Valoración creada correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -67,13 +66,12 @@ class ValoracionActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Valoracion>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun mostrarValoraciones(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyValoraciones)
@@ -100,7 +98,6 @@ class ValoracionActivity : AppCompatActivity() {
         })
     }
 
-
     fun actualizarValoracion(v: View) {
         val id = findViewById<EditText>(R.id.id_valoracion)
         val idCliente = findViewById<EditText>(R.id.id_cliente)
@@ -120,8 +117,8 @@ class ValoracionActivity : AppCompatActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarValoracion(id.text.toString().toInt(), valoracionActualizada)
-                .enqueue(object : Callback<Valoracion> {
-                    override fun onResponse(call: Call<Valoracion>, response: Response<Valoracion>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Valoración actualizada correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -129,13 +126,12 @@ class ValoracionActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Valoracion>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun eliminarValoracion(v: View) {
         val id = findViewById<EditText>(R.id.id_valoracion)
