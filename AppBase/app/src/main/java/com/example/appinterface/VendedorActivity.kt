@@ -1,4 +1,5 @@
 package com.example.appinterface
+
 import com.example.appinterface.DataClass.Vendedor
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
@@ -24,11 +25,6 @@ class VendedorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vendedor)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val btnVolver = findViewById<Button>(R.id.btnVolver)
         btnVolver.setOnClickListener {
@@ -37,7 +33,6 @@ class VendedorActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     fun crearVendedor(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -57,8 +52,8 @@ class VendedorActivity : AppCompatActivity() {
 
         if (nombre.text.isNotEmpty() && correoElectronico.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearVendedor(vendedor)
-                .enqueue(object : Callback<Vendedor> {
-                    override fun onResponse(call: Call<Vendedor>, response: Response<Vendedor>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Vendedor creado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -66,13 +61,12 @@ class VendedorActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Vendedor>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun mostrarVendedores(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyVendedores)
@@ -99,7 +93,6 @@ class VendedorActivity : AppCompatActivity() {
         })
     }
 
-
     fun actualizarVendedor(v: View) {
         val id = findViewById<EditText>(R.id.id_vendedor)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -119,8 +112,8 @@ class VendedorActivity : AppCompatActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarVendedor(id.text.toString().toInt(), vendedorActualizado)
-                .enqueue(object : Callback<Vendedor> {
-                    override fun onResponse(call: Call<Vendedor>, response: Response<Vendedor>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Vendedor actualizado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -128,13 +121,12 @@ class VendedorActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Vendedor>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun eliminarVendedor(v: View) {
         val id = findViewById<EditText>(R.id.id_vendedor)

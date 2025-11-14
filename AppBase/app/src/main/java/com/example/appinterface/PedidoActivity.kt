@@ -1,6 +1,5 @@
 package com.example.appinterface
 
-
 import com.example.appinterface.DataClass.Pedido
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
@@ -17,6 +16,7 @@ import com.example.appinterface.Adapter.PedidoAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 class PedidoActivity : AppCompatActivity() {
     private lateinit var pedido: Pedido
 
@@ -25,11 +25,7 @@ class PedidoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pedido)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         val btnVolver = findViewById<Button>(R.id.btnVolver)
         btnVolver.setOnClickListener {
@@ -38,7 +34,6 @@ class PedidoActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     fun crearPedido(v: View) {
         val idCliente = findViewById<EditText>(R.id.id_cliente)
@@ -56,8 +51,8 @@ class PedidoActivity : AppCompatActivity() {
 
         if (idCliente.text.isNotEmpty() && fechaPedido.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearPedido(pedido)
-                .enqueue(object : Callback<Pedido> {
-                    override fun onResponse(call: Call<Pedido>, response: Response<Pedido>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Pedido creado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -65,13 +60,12 @@ class PedidoActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Pedido>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun mostrarPedidos(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyPedidos)
@@ -98,7 +92,6 @@ class PedidoActivity : AppCompatActivity() {
         })
     }
 
-
     fun actualizarPedido(v: View) {
         val id = findViewById<EditText>(R.id.id_pedido)
         val idCliente = findViewById<EditText>(R.id.id_cliente)
@@ -116,8 +109,8 @@ class PedidoActivity : AppCompatActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarPedido(id.text.toString().toInt(), pedidoActualizado)
-                .enqueue(object : Callback<Pedido> {
-                    override fun onResponse(call: Call<Pedido>, response: Response<Pedido>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Pedido actualizado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -125,13 +118,12 @@ class PedidoActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Pedido>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun eliminarPedido(v: View) {
         val id = findViewById<EditText>(R.id.id_pedido)

@@ -1,4 +1,5 @@
 package com.example.appinterface
+
 import com.example.appinterface.DataClass.Producto
 import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
@@ -15,8 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-
 class ProductoActivity : MenuPrincipalActivity() {
     private lateinit var producto: Producto
 
@@ -25,23 +24,15 @@ class ProductoActivity : MenuPrincipalActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_producto)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+
         val btnVolver = findViewById<Button>(R.id.btnVolver)
         btnVolver.setOnClickListener {
             val intent = Intent(this, MenuPrincipalActivity::class.java)
             startActivity(intent)
             finish()
         }
-
     }
-
-
-
-
 
     fun crearProducto(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -63,8 +54,8 @@ class ProductoActivity : MenuPrincipalActivity() {
 
         if (nombre.text.isNotEmpty() && descripcion.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearProducto(producto)
-                .enqueue(object : Callback<Producto> {
-                    override fun onResponse(call: Call<Producto>, response: Response<Producto>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Producto creado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -72,13 +63,12 @@ class ProductoActivity : MenuPrincipalActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Producto>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun mostrarProductos(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyProductos)
@@ -105,7 +95,6 @@ class ProductoActivity : MenuPrincipalActivity() {
         })
     }
 
-
     fun actualizarProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_producto)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -127,8 +116,8 @@ class ProductoActivity : MenuPrincipalActivity() {
             )
 
             RetrofitInstance.api2kotlin.actualizarProducto(id.text.toString().toInt(), productoActualizado)
-                .enqueue(object : Callback<Producto> {
-                    override fun onResponse(call: Call<Producto>, response: Response<Producto>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Producto actualizado correctamente", Toast.LENGTH_SHORT).show()
                         } else {
@@ -136,13 +125,12 @@ class ProductoActivity : MenuPrincipalActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<Producto>, t: Throwable) {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
     }
-
 
     fun eliminarProducto(v: View) {
         val id = findViewById<EditText>(R.id.id_producto)

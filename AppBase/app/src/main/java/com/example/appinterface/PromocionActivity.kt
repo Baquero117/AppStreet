@@ -4,6 +4,7 @@ import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -24,11 +25,7 @@ class PromocionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_promocion)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         val btnVolver = findViewById<Button>(R.id.btnVolver)
         btnVolver.setOnClickListener {
@@ -57,19 +54,20 @@ class PromocionActivity : AppCompatActivity() {
 
         if (descripcion.text.isNotEmpty() && descuento.text.isNotEmpty()) {
             RetrofitInstance.api2kotlin.crearPromocion(promocion)
-                .enqueue(object : Callback<Promocion> {
-                    override fun onResponse(call: Call<Promocion>, response: Response<Promocion>) {
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
                             Toast.makeText(applicationContext, "Promoción creada correctamente", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(applicationContext, "Error al crear promoción", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-                    override fun onFailure(call: Call<Promocion>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+
         }
     }
 
@@ -118,20 +116,25 @@ class PromocionActivity : AppCompatActivity() {
                 idProducto.text.toString().toInt()
             )
 
-            RetrofitInstance.api2kotlin.actualizarPromocion(id.text.toString().toInt(), promocionActualizada)
-                .enqueue(object : Callback<Promocion> {
-                    override fun onResponse(call: Call<Promocion>, response: Response<Promocion>) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, "Promoción actualizada correctamente", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(applicationContext, "Error al actualizar promoción", Toast.LENGTH_SHORT).show()
-                        }
-                    }
 
-                    override fun onFailure(call: Call<Promocion>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+            val call = RetrofitInstance.api2kotlin.actualizarPromocion(
+                id.text.toString().toInt(),
+                promocionActualizada
+            )
+            call.enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(applicationContext, "Promoción actualizada con éxito", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Log.e("API", "Error del servidor: ${response.code()}")
                     }
-                })
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.e("API", "Error en la conexión: ${t.message}")
+                }
+            })
+
         }
     }
 
