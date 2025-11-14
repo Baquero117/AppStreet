@@ -24,10 +24,11 @@ interface ApiServicesKotlin {
     fun getCategorias(): Call<List<Categoria>>
 
     @POST("categoria")
-    fun crearCategoria(@Body categoria: Categoria): Call<Categoria>
+    fun crearCategoria(@Body categoria: Categoria): Call<Void>
 
     @PUT("categoria/{id}")
-    fun actualizarCategoria(@Path("id") id: Int, @Body categoria: Categoria): Call<Categoria>
+    fun actualizarCategoria(@Path("id") id: Int, @Body categoria: Categoria): Call<Void>
+
 
     @DELETE("categoria/{id}")
     fun eliminarCategoria(@Path("id") id: Int): Call<Void>
@@ -39,10 +40,10 @@ interface ApiServicesKotlin {
     fun getDetalleProducto(): Call<List<Detalle_Producto>>
 
     @POST("detalle_producto")
-    fun crearDetalleProducto(@Body detalleProducto: Detalle_Producto): Call<Detalle_Producto>
+    fun crearDetalleProducto(@Body detalleProducto: Detalle_Producto): Call<Void>
 
     @PUT("detalle_producto/{id}")
-    fun actualizarDetalleProducto(@Path("id") id: Int, @Body detalleProducto: Detalle_Producto): Call<Detalle_Producto>
+    fun actualizarDetalleProducto(@Path("id") id: Int, @Body detalleProducto: Detalle_Producto): Call<Void>
 
     @DELETE("detalle_producto/{id}")
     fun eliminarDetalleProducto(@Path("id") id: Int): Call<Void>
@@ -52,10 +53,10 @@ interface ApiServicesKotlin {
     fun getProductos(): Call<List<Producto>>
 
     @POST("producto")
-    fun crearProducto(@Body producto: Producto): Call<Producto>
+    fun crearProducto(@Body producto: Producto): Call<Void>
 
     @PUT("producto/{id}")
-    fun actualizarProducto(@Path("id") id: Int, @Body producto: Producto): Call<Producto>
+    fun actualizarProducto(@Path("id") id: Int, @Body producto: Producto): Call<Void>
 
     @DELETE("producto/{id}")
     fun eliminarProducto(@Path("id") id: Int): Call<Void>
@@ -68,10 +69,11 @@ interface ApiServicesKotlin {
     fun getPedidos(): Call<List<Pedido>>
 
     @POST("pedido")
-    fun crearPedido(@Body pedido: Pedido): Call<Pedido>
+    fun crearPedido(@Body pedido: Pedido): Call<Void>
 
     @PUT("pedido/{id}")
-    fun actualizarPedido(@Path("id") id: Int, @Body pedido: Pedido): Call<Pedido>
+    fun actualizarPedido(@Path("id") id: Int, @Body pedido: Pedido): Call<Void>
+
 
     @DELETE("pedido/{id}")
     fun eliminarPedido(@Path("id") id: Int): Call<Void>
@@ -84,10 +86,11 @@ interface ApiServicesKotlin {
     fun getPromociones(): Call<List<Promocion>>
 
     @POST("promocion")
-    fun crearPromocion(@Body promocion: Promocion): Call<Promocion>
+    fun crearPromocion(@Body promocion: Promocion): Call<Void>
 
-    @PUT("promocion{id}")
-    fun actualizarPromocion(@Path("id") id: Int, @Body promocion: Promocion): Call<Promocion>
+
+    @PUT("promocion/{id}")
+    fun actualizarPromocion(@Path("id") id: Int, @Body promocion: Promocion): Call<Void>
 
     @DELETE("promocion/{id}")
     fun eliminarPromocion(@Path("id") id: Int): Call<Void>
@@ -96,10 +99,10 @@ interface ApiServicesKotlin {
     fun getValoraciones(): Call<List<Valoracion>>
 
     @POST("valoracion")
-    fun crearValoracion(@Body valoracion: Valoracion): Call<Valoracion>
+    fun crearValoracion(@Body valoracion: Valoracion): Call<Void>
 
     @PUT("valoracion/{id}")
-    fun actualizarValoracion(@Path("id") id: Int, @Body valoracion: Valoracion): Call<Valoracion>
+    fun actualizarValoracion(@Path("id") id: Int, @Body valoracion: Valoracion): Call<Void>
 
     @DELETE("/valoracion/{id}")
     fun eliminarValoracion(@Path("id") id: Int): Call<Void>
@@ -109,10 +112,10 @@ interface ApiServicesKotlin {
     fun getClientes(): Call<List<Cliente>>
 
     @POST("cliente")
-    fun crearCliente(@Body cliente: Cliente): Call<Cliente>
+    fun crearCliente(@Body cliente: Cliente): Call<Void>
 
     @PUT("cliente/{id}")
-    fun actualizarCliente(@Path("id") id: Int, @Body cliente: Cliente): Call<Cliente>
+    fun actualizarCliente(@Path("id") id: Int, @Body cliente: Cliente): Call<Void>
 
     @DELETE("cliente/{id}")
     fun eliminarCliente(@Path("id") id: Int): Call<Void>
@@ -126,10 +129,10 @@ interface ApiServicesKotlin {
     fun getVendedores(): Call<List<Vendedor>>
 
     @POST("vendedor")
-    fun crearVendedor(@Body vendedor: Vendedor): Call<Vendedor>
+    fun crearVendedor(@Body vendedor: Vendedor): Call<Void>
 
     @PUT("vendedor/{id}")
-    fun actualizarVendedor(@Path("id") id: Int, @Body vendedor: Vendedor): Call<Vendedor>
+    fun actualizarVendedor(@Path("id") id: Int, @Body vendedor: Vendedor): Call<Void>
 
     @DELETE("vendedor/{id}")
     fun eliminarVendedor(@Path("id") id: Int): Call<Void>
