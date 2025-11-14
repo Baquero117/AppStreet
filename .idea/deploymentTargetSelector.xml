@@ -14,19 +14,19 @@
       <SelectionState runConfigName="AppInterface.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PanelActivity (1)">
+      <SelectionState runConfigName="LoginActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BaseActivity">
+      <SelectionState runConfigName="MenuPrincipalActivity (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MenuPrincipalActivity">
+      <SelectionState runConfigName="ClienteActivity (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ClienteActivity">
+      <SelectionState runConfigName="ClienteActivity (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MenuPrincipalActivity (1)">
+      <SelectionState runConfigName="CategoriaActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
