@@ -146,15 +146,7 @@
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
 
-            <Button
-                    android:text="Mostrar"
-                    android:onClick="mostrarVendedores"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#2196F3"
-                    android:textColor="#FFF"
-                    android:layout_margin="5dp"/>
+
 
             <Button
                     android:text="Actualizar"
@@ -187,15 +179,35 @@
                 android:textColor="#FFF"
                 android:layout_marginBottom="20dp" />
 
-
-        <TextView
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lista de vendedores:"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp"
-                android:textColor="#222" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lista de vendedores:"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#222" />
+
+            <Button
+                    android:id="@+id/btnMostrarVendedores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mostrar"
+                    android:onClick="mostrarVendedores"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFF"
+                    android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyVendedores"

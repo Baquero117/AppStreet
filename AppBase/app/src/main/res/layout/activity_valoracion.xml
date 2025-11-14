@@ -148,15 +148,7 @@
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
 
-            <Button
-                    android:text="Mostrar"
-                    android:onClick="mostrarValoraciones"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#2196F3"
-                    android:textColor="#FFF"
-                    android:layout_margin="5dp"/>
+
 
             <Button
                     android:text="Actualizar"
