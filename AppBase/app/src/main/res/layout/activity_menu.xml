@@ -3,84 +3,135 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ECECEC"
+            android:background="#F5F5F5"
             tools:context=".MenuPrincipalActivity">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
+            android:padding="20dp"
             android:gravity="center">
 
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:clipToPadding="false"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:background="@drawable/card_background"
+                android:elevation="6dp">
+
+
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menú Principal"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:layout_marginBottom="30dp" />
-
-        <Button
-                android:id="@+id/btnClientes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Clientes"
-                android:layout_marginBottom="12dp" />
-
-        <Button
-                android:id="@+id/btnProductos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Productos"
-                android:layout_marginBottom="12dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menú Principal"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="25dp" />
 
 
-        <Button
-                android:id="@+id/btnPedidos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pedidos"
-                android:layout_marginBottom="12dp" />
-
-        <Button
-                android:id="@+id/btnPromociones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Promociones"
-                android:layout_marginBottom="12dp" />
+            <Button
+                    android:id="@+id/btnClientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Clientes"
+                    android:drawableLeft="@android:drawable/ic_menu_myplaces"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
 
 
-        <Button
-                android:id="@+id/btnValoraciones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Valoraciones"
-                android:layout_marginBottom="12dp" />
-
-        <Button
-                android:id="@+id/btnCategorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Categorias"
-                android:layout_marginBottom="12dp" />
+            <Button
+                    android:id="@+id/btnProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Productos"
+                    android:drawableLeft="@android:drawable/ic_menu_gallery"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
 
 
+            <Button
+                    android:id="@+id/btnPedidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Pedidos"
+                    android:drawableLeft="@android:drawable/ic_menu_send"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
 
-        <Button
-                android:id="@+id/btnDetallesProducto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Detalles del producto"
-                android:layout_marginBottom="12dp" />
 
-        <Button
-                android:id="@+id/btnVendedores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vendedores"
-                android:layout_marginBottom="12dp" />
+            <Button
+                    android:id="@+id/btnPromociones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Promociones"
+                    android:drawableLeft="@android:drawable/ic_menu_manage"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
+
+
+            <Button
+                    android:id="@+id/btnValoraciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Valoraciones"
+                    android:drawableLeft="@android:drawable/ic_menu_info_details"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
+
+
+            <Button
+                    android:id="@+id/btnCategorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Categorías"
+                    android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
+
+
+            <Button
+                    android:id="@+id/btnDetallesProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Detalles del producto"
+                    android:drawableLeft="@android:drawable/ic_menu_view"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp" />
+
+
+            <Button
+                    android:id="@+id/btnVendedores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vendedores"
+                    android:drawableLeft="@drawable/outline_account_box_24"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="20dp"
+                    android:background="@drawable/btn_menu"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </ScrollView>

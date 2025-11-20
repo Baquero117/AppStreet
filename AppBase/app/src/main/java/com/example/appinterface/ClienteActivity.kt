@@ -26,11 +26,7 @@ class ClienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cliente)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         val btnVolver = findViewById<Button>(R.id.btnVolver)
         btnVolver.setOnClickListener {
@@ -40,7 +36,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-    // 🔹 Crear cliente
+
     fun crearCliente(v: View) {
         val nombre = findViewById<EditText>(R.id.nombre)
         val apellido = findViewById<EditText>(R.id.apellido)
@@ -79,7 +75,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-    // 🔹 Mostrar clientes
+
     fun mostrarClientes(v: View) {
         val recyclerView = findViewById<RecyclerView>(R.id.RecyClientes)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -105,7 +101,7 @@ class ClienteActivity : AppCompatActivity() {
         })
     }
 
-    // 🔹 Actualizar cliente
+
     fun actualizarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
         val nombre = findViewById<EditText>(R.id.nombre)
@@ -147,7 +143,7 @@ class ClienteActivity : AppCompatActivity() {
         }
     }
 
-    // 🔹 Eliminar cliente
+
     fun eliminarCliente(v: View) {
         val id = findViewById<EditText>(R.id.id_cliente)
 
