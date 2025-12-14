@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="10dp"
+                                   app:cardElevation="6dp"
+                                   app:cardCornerRadius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+
+        <TextView
+                android:id="@+id/txtid_vendedor"
+                android:text="Id_vendedor"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtNombreVendedor"
+                android:text="Nombre del vendedor"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtCorreoVendedor"
+                android:text="Correo"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtTelefonoVendedor"
+                android:text="Teléfono"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtContrasenaVendedor"
+                android:text="Contraseña"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+            <Button
+                    android:id="@+id/btnEditarVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"
+                    android:layout_marginEnd="10dp"/>
+
+            <Button
+                    android:id="@+id/btnEliminarVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

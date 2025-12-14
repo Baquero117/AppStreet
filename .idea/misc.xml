@@ -3,4 +3,11 @@
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.0929248046875" />
+      </ProjectState>
+    </option>
+  </component>
 </project>

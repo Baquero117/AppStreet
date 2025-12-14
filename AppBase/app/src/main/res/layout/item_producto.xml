@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="10dp"
+                                   app:cardElevation="6dp"
+                                   app:cardCornerRadius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+        <!-- ID Producto -->
+        <TextView
+                android:id="@+id/txtIdProducto"
+                android:text="ID Producto"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Nombre -->
+        <TextView
+                android:id="@+id/txtNombreProducto"
+                android:text="Nombre del producto"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <ImageView
+                android:id="@+id/imgProducto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"/>
+
+
+
+
+
+        <!-- Descripción -->
+        <TextView
+                android:id="@+id/txtDescripcionProducto"
+                android:text="Descripción"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Cantidad -->
+        <TextView
+                android:id="@+id/txtCantidadProducto"
+                android:text="Cantidad"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Estado -->
+        <TextView
+                android:id="@+id/txtEstadoProducto"
+                android:text="Estado"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- ID Vendedor -->
+        <TextView
+                android:id="@+id/txtVendedorProducto"
+                android:text="ID Vendedor"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Botones -->
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+            <Button
+                    android:id="@+id/btnEditarProducto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"
+                    android:layout_marginEnd="10dp" />
+
+            <Button
+                    android:id="@+id/btnEliminarProducto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

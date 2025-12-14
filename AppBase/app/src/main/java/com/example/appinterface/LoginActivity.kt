@@ -61,15 +61,14 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            val intent = Intent(
-                                this@LoginActivity,
-                                MenuPrincipalActivity::class.java
-                            )
 
-                            intent.putExtra("id_vendedor", vendedor.id_vendedor)
-                            intent.putExtra("nombre_vendedor", vendedor.nombre)
+                            val prefs = getSharedPreferences("usuario", MODE_PRIVATE)
+                            prefs.edit()
+                                .putString("nombre_vendedor", vendedor.nombre)
+                                .putInt("id_vendedor", vendedor.id_vendedor)
+                                .apply()
 
-                            startActivity(intent)
+                            startActivity(Intent(this@LoginActivity, MenuPrincipalActivity::class.java))
                             finish()
 
                         } else {

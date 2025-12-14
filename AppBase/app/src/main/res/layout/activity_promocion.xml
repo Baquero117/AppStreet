@@ -2,12 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".PromocionActivity"
             android:fillViewport="true"
-            android:background="#F8F8F8">
+            android:background="#F2F2F2"
+            tools:context=".PromocionActivity">
 
     <LinearLayout
             android:orientation="vertical"
@@ -15,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
+        <!-- TÍTULO -->
         <TextView
                 android:id="@+id/tvTituloPromocion"
                 android:layout_width="match_parent"
@@ -27,7 +26,7 @@
                 android:textColor="#222"
                 android:paddingBottom="18dp" />
 
-
+        <!-- CARD PRINCIPAL -->
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-
+                <!-- ID PROMOCIÓN -->
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -56,7 +55,7 @@
                             android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- DESCRIPCIÓN -->
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -71,7 +70,7 @@
                             android:minLines="2" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- DESCUENTO -->
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -85,7 +84,7 @@
                             android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- FECHA INICIO -->
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -99,7 +98,7 @@
                             android:inputType="date" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- FECHA FIN -->
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,8 +147,6 @@
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
 
-
-
             <Button
                     android:text="Actualizar"
                     android:onClick="actualizarPromocion"
@@ -169,6 +166,29 @@
                     android:backgroundTint="#F44336"
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+            <EditText
+                    android:id="@+id/txtBuscarId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Buscar por ID"
+                    android:inputType="number" />
+
+            <Button
+                    android:id="@+id/btnBuscarId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar" />
         </LinearLayout>
 
 
@@ -209,11 +229,13 @@
                     android:layout_marginLeft="10dp"/>
         </LinearLayout>
 
+        <!-- Recycler -->
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyPromociones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                android:layout_marginBottom="30dp" />
 
     </LinearLayout>
 </ScrollView>

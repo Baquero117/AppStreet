@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="10dp"
+                                   app:cardElevation="6dp"
+                                   app:cardCornerRadius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+        <!-- ID Detalle -->
+        <TextView
+                android:id="@+id/txtIdDetalle"
+                android:text="ID Detalle"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Talla -->
+        <TextView
+                android:id="@+id/txtTalla"
+                android:text="Talla"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Imagen -->
+        <ImageView
+                android:id="@+id/imgDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+        <!-- Color -->
+        <TextView
+                android:id="@+id/txtColor"
+                android:text="Color"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Precio -->
+        <TextView
+                android:id="@+id/txtPrecio"
+                android:text="Precio"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- ID Producto -->
+        <TextView
+                android:id="@+id/txtProducto"
+                android:text="ID Producto"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- ID Categoría -->
+        <TextView
+                android:id="@+id/txtCategoria"
+                android:text="ID Categoría"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Botones -->
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+            <Button
+                    android:id="@+id/btnEditarDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"
+                    android:layout_marginEnd="10dp" />
+
+            <Button
+                    android:id="@+id/btnEliminarDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

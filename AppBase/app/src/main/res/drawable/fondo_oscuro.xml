@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Imagen original -->
+    <item android:drawable="@drawable/grafiti"/>
+
+    <!-- Capa negra con transparencia -->
+    <item>
+        <shape>
+            <solid android:color="#88000000"/>
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="10dp"
+                                   app:cardElevation="6dp"
+                                   app:cardCornerRadius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+        <!-- ID VALORACIÓN -->
+        <TextView
+                android:id="@+id/txtIdValoracion"
+                android:text="ID Valoración"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!-- ID CLIENTE -->
+        <TextView
+                android:id="@+id/txtIdCliente"
+                android:text="ID Cliente"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!-- ID PRODUCTO -->
+        <TextView
+                android:id="@+id/txtIdProducto"
+                android:text="ID Producto"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!-- CALIFICACIÓN -->
+        <TextView
+                android:id="@+id/txtCalificacion"
+                android:text="Calificación"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!-- COMENTARIO -->
+        <TextView
+                android:id="@+id/txtComentario"
+                android:text="Comentario"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!-- FECHA -->
+        <TextView
+                android:id="@+id/txtFechaValoracion"
+                android:text="Fecha Valoración"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <!-- BOTONES -->
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+
+
+            <Button
+                    android:id="@+id/btnEliminarValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
