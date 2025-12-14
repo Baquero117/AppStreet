@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appinterface.Api.RetrofitInstance
+import com.example.appinterface.DataClass.LoginRequest
+import com.example.appinterface.DataClass.LoginResponse
 import com.example.appinterface.DataClass.Vendedor
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginVendedor() {
+
         val correo = findViewById<EditText>(R.id.txtCorreoVendedor).text.toString()
         val contrasena = findViewById<EditText>(R.id.txtContrasenaVendedor).text.toString()
 
@@ -35,59 +38,64 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        RetrofitInstance.api2kotlin.getVendedores()
-            .enqueue(object : Callback<List<Vendedor>> {
-                override fun onResponse(call: Call<List<Vendedor>>, response: Response<List<Vendedor>>) {
-                    if (response.isSuccessful) {
+        // ⚠️ nombres EXACTOS como el backend
+        val request = LoginRequest(
+            correo_electronico = correo,
+            contrasena = contrasena
+        )
 
-                        val lista = response.body() ?: emptyList()
+        RetrofitInstance.api2kotlin(this).login(request)
+            .enqueue(object : Callback<LoginResponse> {
 
-                        val vendedor = lista.find { it.correo_electronico == correo }
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
 
-                        if (vendedor == null) {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Correo incorrecto o no registrado",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            return
+                        val loginResponse = response.body()!!
+
+                        // ✅ Guardar token y tipo
+                        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+                        prefs.edit()
+                            .putString("jwt", loginResponse.token)
+                            .putString("tipo", loginResponse.tipo)
+                            .apply()
+
+                        // ✅ Mostrar nombre correcto
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Bienvenido ${loginResponse.usuario.nombre}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        // 👉 Redirigir según tipo
+                        if (loginResponse.tipo == "administrador") {
+                            startActivity(
+                                Intent(this@LoginActivity, MenuPrincipalActivity::class.java)
+                            )
                         }
 
-                        if (vendedor.contrasena == contrasena) {
+                        finish()
 
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Bienvenido ${vendedor.nombre}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-
-                            val prefs = getSharedPreferences("usuario", MODE_PRIVATE)
-                            prefs.edit()
-                                .putString("nombre_vendedor", vendedor.nombre)
-                                .putInt("id_vendedor", vendedor.id_vendedor)
-                                .apply()
-
-                            startActivity(Intent(this@LoginActivity, MenuPrincipalActivity::class.java))
-                            finish()
-
-                        } else {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Contraseña incorrecta",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Correo o contraseña incorrectos",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
-                override fun onFailure(call: Call<List<Vendedor>>, t: Throwable) {
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Toast.makeText(
                         this@LoginActivity,
-                        "Error de conexión",
+                        "Error de conexión: ${t.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             })
     }
+
 }

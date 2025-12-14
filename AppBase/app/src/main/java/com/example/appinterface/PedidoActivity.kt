@@ -69,7 +69,7 @@ class PedidoActivity : AppCompatActivity() {
             estado.text.toString()
         )
 
-        RetrofitInstance.api2kotlin.crearPedido(pedido)
+        RetrofitInstance.api2kotlin(this).crearPedido(pedido)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -88,7 +88,7 @@ class PedidoActivity : AppCompatActivity() {
 
 
     fun mostrarPedidos(v: View) {
-        RetrofitInstance.api2kotlin.getPedidos()
+        RetrofitInstance.api2kotlin(this).getPedidos()
             .enqueue(object : Callback<List<Pedido>> {
                 override fun onResponse(call: Call<List<Pedido>>, response: Response<List<Pedido>>) {
                     if (response.isSuccessful) {
@@ -143,7 +143,7 @@ class PedidoActivity : AppCompatActivity() {
 
 
     private fun eliminarPedidoDirecto(pedido: Pedido) {
-        RetrofitInstance.api2kotlin.eliminarPedido(pedido.id_pedido)
+        RetrofitInstance.api2kotlin(this).eliminarPedido(pedido.id_pedido)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -181,7 +181,7 @@ class PedidoActivity : AppCompatActivity() {
             estado.text.toString()
         )
 
-        RetrofitInstance.api2kotlin.actualizarPedido(id.text.toString().toInt(), pedidoActualizado)
+        RetrofitInstance.api2kotlin(this).actualizarPedido(id.text.toString().toInt(), pedidoActualizado)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -207,7 +207,7 @@ class PedidoActivity : AppCompatActivity() {
             return
         }
 
-        RetrofitInstance.api2kotlin.eliminarPedido(id.text.toString().toInt())
+        RetrofitInstance.api2kotlin(this).eliminarPedido(id.text.toString().toInt())
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {

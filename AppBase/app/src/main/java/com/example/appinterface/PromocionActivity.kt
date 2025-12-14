@@ -66,7 +66,7 @@ class PromocionActivity : AppCompatActivity() {
             idProducto.text.toString().toInt()
         )
 
-        RetrofitInstance.api2kotlin.crearPromocion(promocion)
+        RetrofitInstance.api2kotlin(this).crearPromocion(promocion)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -85,7 +85,7 @@ class PromocionActivity : AppCompatActivity() {
 
 
     fun mostrarPromociones(v: View) {
-        RetrofitInstance.api2kotlin.getPromociones()
+        RetrofitInstance.api2kotlin(this).getPromociones()
             .enqueue(object : Callback<List<Promocion>> {
                 override fun onResponse(call: Call<List<Promocion>>, response: Response<List<Promocion>>) {
                     if (response.isSuccessful) {
@@ -140,7 +140,7 @@ class PromocionActivity : AppCompatActivity() {
 
 
     private fun eliminarPromocionDirecto(promocion: Promocion) {
-        RetrofitInstance.api2kotlin.eliminarPromocion(promocion.id_promocion)
+        RetrofitInstance.api2kotlin(this).eliminarPromocion(promocion.id_promocion)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -176,7 +176,7 @@ class PromocionActivity : AppCompatActivity() {
                 idProducto.text.toString().toInt()
             )
 
-            RetrofitInstance.api2kotlin.actualizarPromocion(promoActualizada.id_promocion, promoActualizada)
+            RetrofitInstance.api2kotlin(this).actualizarPromocion(promoActualizada.id_promocion, promoActualizada)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {

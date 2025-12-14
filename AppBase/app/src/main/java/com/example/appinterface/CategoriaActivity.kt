@@ -76,7 +76,7 @@ class CategoriaActivity : AppCompatActivity() {
 
         val categoria = Categoria(0, nombre)
 
-        RetrofitInstance.api2kotlin.crearCategoria(categoria)
+        RetrofitInstance.api2kotlin(this).crearCategoria(categoria)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -96,7 +96,7 @@ class CategoriaActivity : AppCompatActivity() {
 
     fun mostrarCategorias(v: View) {
 
-        RetrofitInstance.api2kotlin.getCategorias()
+        RetrofitInstance.api2kotlin(this).getCategorias()
             .enqueue(object : Callback<List<Categoria>> {
                 override fun onResponse(call: Call<List<Categoria>>, response: Response<List<Categoria>>) {
                     if (response.isSuccessful) {
@@ -157,7 +157,7 @@ class CategoriaActivity : AppCompatActivity() {
 
         val categoria = Categoria(idTexto.toInt(), nombreTexto)
 
-        RetrofitInstance.api2kotlin.actualizarCategoria(categoria.id_categoria, categoria)
+        RetrofitInstance.api2kotlin(this).actualizarCategoria(categoria.id_categoria, categoria)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -177,7 +177,7 @@ class CategoriaActivity : AppCompatActivity() {
 
     private fun eliminarDesdeLista(categoria: Categoria) {
 
-        RetrofitInstance.api2kotlin.eliminarCategoria(categoria.id_categoria)
+        RetrofitInstance.api2kotlin(this).eliminarCategoria(categoria.id_categoria)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -203,7 +203,7 @@ class CategoriaActivity : AppCompatActivity() {
             return
         }
 
-        RetrofitInstance.api2kotlin.eliminarCategoria(idTexto.toInt())
+        RetrofitInstance.api2kotlin(this).eliminarCategoria(idTexto.toInt())
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {

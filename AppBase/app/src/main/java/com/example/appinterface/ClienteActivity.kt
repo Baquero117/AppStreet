@@ -75,7 +75,7 @@ class ClienteActivity : AppCompatActivity() {
 
         if (nombre.text.isNotEmpty() && correo.text.isNotEmpty()) {
 
-            RetrofitInstance.api2kotlin.crearCliente(cliente)
+            RetrofitInstance.api2kotlin(this).crearCliente(cliente)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -100,7 +100,7 @@ class ClienteActivity : AppCompatActivity() {
 
     fun mostrarClientes(v: View) {
 
-        RetrofitInstance.api2kotlin.getClientes()
+        RetrofitInstance.api2kotlin(this).getClientes()
             .enqueue(object : Callback<List<Cliente>> {
                 override fun onResponse(call: Call<List<Cliente>>, response: Response<List<Cliente>>) {
 
@@ -163,7 +163,7 @@ class ClienteActivity : AppCompatActivity() {
 
 
     private fun eliminarClienteDirecto(cliente: Cliente) {
-        RetrofitInstance.api2kotlin.eliminarCliente(cliente.id_cliente)
+        RetrofitInstance.api2kotlin(this).eliminarCliente(cliente.id_cliente)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -203,7 +203,7 @@ class ClienteActivity : AppCompatActivity() {
                 correo.text.toString()
             )
 
-            RetrofitInstance.api2kotlin.actualizarCliente(id.text.toString().toInt(), clienteActualizado)
+            RetrofitInstance.api2kotlin(this).actualizarCliente(id.text.toString().toInt(), clienteActualizado)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -229,7 +229,7 @@ class ClienteActivity : AppCompatActivity() {
         val id = findViewById<EditText>(R.id.id_cliente)
 
         if (!id.text.isNullOrEmpty()) {
-            RetrofitInstance.api2kotlin.eliminarCliente(id.text.toString().toInt())
+            RetrofitInstance.api2kotlin(this).eliminarCliente(id.text.toString().toInt())
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {

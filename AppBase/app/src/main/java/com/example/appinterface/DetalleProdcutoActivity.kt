@@ -78,7 +78,7 @@ class DetalleProductoActivity : AppCompatActivity() {
         val detalle = obtenerDetalleDesdeFormulario(0)
 
         if (detalle.talla.isNotEmpty() && detalle.color.isNotEmpty()) {
-            RetrofitInstance.api2kotlin.crearDetalleProducto(detalle)
+            RetrofitInstance.api2kotlin(this).crearDetalleProducto(detalle)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -99,7 +99,7 @@ class DetalleProductoActivity : AppCompatActivity() {
 
 
     fun mostrarDetalles(v: View) {
-        RetrofitInstance.api2kotlin.getDetalleProducto()
+        RetrofitInstance.api2kotlin(this).getDetalleProducto()
             .enqueue(object : Callback<List<Detalle_Producto>> {
                 override fun onResponse(
                     call: Call<List<Detalle_Producto>>,
@@ -170,7 +170,7 @@ class DetalleProductoActivity : AppCompatActivity() {
         val detalleActualizado =
             obtenerDetalleDesdeFormulario(idTxt.text.toString().toInt())
 
-        RetrofitInstance.api2kotlin
+        RetrofitInstance.api2kotlin(this)
             .actualizarDetalleProducto(detalleActualizado.id_detalle_producto, detalleActualizado)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -191,7 +191,7 @@ class DetalleProductoActivity : AppCompatActivity() {
 
 
     private fun eliminarDetalleDirecto(detalle: Detalle_Producto) {
-        RetrofitInstance.api2kotlin.eliminarDetalleProducto(detalle.id_detalle_producto)
+        RetrofitInstance.api2kotlin(this).eliminarDetalleProducto(detalle.id_detalle_producto)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {

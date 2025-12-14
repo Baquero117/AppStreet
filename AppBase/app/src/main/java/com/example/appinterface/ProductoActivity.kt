@@ -80,7 +80,7 @@ class ProductoActivity : AppCompatActivity() {
         val producto = obtenerProductoDesdeFormulario(0)
 
         if (producto.nombre.isNotEmpty() && producto.descripcion.isNotEmpty()) {
-            RetrofitInstance.api2kotlin.crearProducto(producto)
+            RetrofitInstance.api2kotlin(this).crearProducto(producto)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -101,7 +101,7 @@ class ProductoActivity : AppCompatActivity() {
 
 
     fun mostrarProductos(v: View) {
-        RetrofitInstance.api2kotlin.getProductos()
+        RetrofitInstance.api2kotlin(this).getProductos()
             .enqueue(object : Callback<List<Producto>> {
                 override fun onResponse(
                     call: Call<List<Producto>>,
@@ -173,7 +173,7 @@ class ProductoActivity : AppCompatActivity() {
         val productoActualizado =
             obtenerProductoDesdeFormulario(idTxt.text.toString().toInt())
 
-        RetrofitInstance.api2kotlin
+        RetrofitInstance.api2kotlin(this)
             .actualizarProducto(productoActualizado.id_producto, productoActualizado)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -194,7 +194,7 @@ class ProductoActivity : AppCompatActivity() {
 
 
     private fun eliminarProductoDirecto(producto: Producto) {
-        RetrofitInstance.api2kotlin.eliminarProducto(producto.id_producto)
+        RetrofitInstance.api2kotlin(this).eliminarProducto(producto.id_producto)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {

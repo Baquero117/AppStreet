@@ -53,7 +53,7 @@ class ValoracionActivity : AppCompatActivity() {
 
 
     fun mostrarValoraciones(v: View) {
-        RetrofitInstance.api2kotlin.getValoraciones()
+        RetrofitInstance.api2kotlin(this).getValoraciones()
             .enqueue(object : Callback<List<Valoracion>> {
                 override fun onResponse(
                     call: Call<List<Valoracion>>,
@@ -102,7 +102,7 @@ class ValoracionActivity : AppCompatActivity() {
 
 
     private fun eliminarValoracionDirecto(valoracion: Valoracion) {
-        RetrofitInstance.api2kotlin.eliminarValoracion(valoracion.id_valoracion)
+        RetrofitInstance.api2kotlin(this).eliminarValoracion(valoracion.id_valoracion)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {

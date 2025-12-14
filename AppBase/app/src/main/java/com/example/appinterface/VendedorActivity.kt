@@ -69,7 +69,7 @@ class VendedorActivity : AppCompatActivity() {
 
         if (nombre.text.isNotEmpty() && correo.text.isNotEmpty()) {
 
-            RetrofitInstance.api2kotlin.crearVendedor(vendedor)
+            RetrofitInstance.api2kotlin(this).crearVendedor(vendedor)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -93,7 +93,7 @@ class VendedorActivity : AppCompatActivity() {
 
     fun mostrarVendedores(v: View) {
 
-        RetrofitInstance.api2kotlin.getVendedores()
+        RetrofitInstance.api2kotlin(this).getVendedores()
             .enqueue(object : Callback<List<Vendedor>> {
                 override fun onResponse(call: Call<List<Vendedor>>, response: Response<List<Vendedor>>) {
                     if (response.isSuccessful) {
@@ -148,7 +148,7 @@ class VendedorActivity : AppCompatActivity() {
 
 
     private fun eliminarVendedorDirecto(vendedor: Vendedor) {
-        RetrofitInstance.api2kotlin.eliminarVendedor(vendedor.id_vendedor)
+        RetrofitInstance.api2kotlin(this).eliminarVendedor(vendedor.id_vendedor)
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
@@ -185,7 +185,7 @@ class VendedorActivity : AppCompatActivity() {
                 contrasena.text.toString()
             )
 
-            RetrofitInstance.api2kotlin.actualizarVendedor(id.text.toString().toInt(), vendedorActualizado)
+            RetrofitInstance.api2kotlin(this).actualizarVendedor(id.text.toString().toInt(), vendedorActualizado)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -212,7 +212,7 @@ class VendedorActivity : AppCompatActivity() {
 
         if (!id.text.isNullOrEmpty()) {
 
-            RetrofitInstance.api2kotlin.eliminarVendedor(id.text.toString().toInt())
+            RetrofitInstance.api2kotlin(this).eliminarVendedor(id.text.toString().toInt())
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
