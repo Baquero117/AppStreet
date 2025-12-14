@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // ⚠️ nombres EXACTOS como el backend
+
         val request = LoginRequest(
             correo_electronico = correo,
             contrasena = contrasena
@@ -55,21 +55,22 @@ class LoginActivity : AppCompatActivity() {
 
                         val loginResponse = response.body()!!
 
-                        // ✅ Guardar token y tipo
+
                         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
                         prefs.edit()
                             .putString("jwt", loginResponse.token)
                             .putString("tipo", loginResponse.tipo)
+                            .putString("nombre", loginResponse.usuario.nombre)
                             .apply()
 
-                        // ✅ Mostrar nombre correcto
+
                         Toast.makeText(
                             this@LoginActivity,
                             "Bienvenido ${loginResponse.usuario.nombre}",
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        // 👉 Redirigir según tipo
+
                         if (loginResponse.tipo == "administrador") {
                             startActivity(
                                 Intent(this@LoginActivity, MenuPrincipalActivity::class.java)
