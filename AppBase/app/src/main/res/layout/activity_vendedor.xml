@@ -2,19 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".VendedorActivity"
             android:fillViewport="true"
-            android:background="#F8F8F8">
+            android:background="#F2F2F2">
 
     <LinearLayout
             android:orientation="vertical"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
         <TextView
                 android:id="@+id/tvTituloVendedor"
@@ -42,7 +40,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -52,9 +49,8 @@
                             android:id="@+id/id_vendedor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="number"/>
+                            android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -66,9 +62,8 @@
                             android:id="@+id/nombre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"/>
+                            android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -80,9 +75,8 @@
                             android:id="@+id/apellido"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"/>
+                            android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -94,9 +88,8 @@
                             android:id="@+id/correo_electronico"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"/>
+                            android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -108,21 +101,21 @@
                             android:id="@+id/telefono"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="phone"/>
+                            android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:hint="Contraseña">
+                        android:hint="Contraseña"
+                        app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/contrasena"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"/>
+                            android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -146,8 +139,6 @@
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
 
-
-
             <Button
                     android:text="Actualizar"
                     android:onClick="actualizarVendedor"
@@ -167,6 +158,30 @@
                     android:backgroundTint="#F44336"
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+            <EditText
+                    android:id="@+id/txtBuscarId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Buscar por ID"
+                    android:inputType="number" />
+
+            <Button
+                    android:id="@+id/btnBuscarId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar" />
         </LinearLayout>
 
 
@@ -179,6 +194,7 @@
                 android:textColor="#FFF"
                 android:layout_marginBottom="20dp" />
 
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,13 +203,14 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtListaVendedores"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Lista de vendedores:"
+                    android:layout_weight="1"
+                    android:text="Lista de vendedores"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="8dp"
-                    android:textColor="#222" />
+                    android:textColor="#333" />
 
             <Button
                     android:id="@+id/btnMostrarVendedores"
@@ -204,17 +221,15 @@
                     android:backgroundTint="#2196F3"
                     android:textColor="#FFF"
                     android:layout_marginLeft="10dp"/>
+
         </LinearLayout>
-
-
-
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyVendedores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="true"
-                android:padding="8dp"
-                android:background="#EEE"/>
+                android:layout_marginBottom="30dp" />
+
     </LinearLayout>
 </ScrollView>

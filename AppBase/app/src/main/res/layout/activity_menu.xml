@@ -1,137 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F5F5F5"
-            tools:context=".MenuPrincipalActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fondo_oscuro">
+
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/sidebarContainer"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:background="#0D111C"
             android:orientation="vertical"
             android:padding="20dp"
-            android:gravity="center">
+            android:elevation="10dp" android:layout_alignParentEnd="true" android:layout_marginEnd="37dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="46dp">
+
+
+        <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:srcCompat="@drawable/streetlog"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/profile_circle"/>
+
+        <TextView
+                android:id="@+id/txtNombreUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DevFlash"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="25dp"/>
+
 
 
         <LinearLayout
+                android:id="@+id/btnClientes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:clipToPadding="false"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:background="@drawable/card_background"
-                android:elevation="6dp">
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
 
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
 
-        <TextView
+                    android:src="@android:drawable/ic_menu_myplaces"/>
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Menú Principal"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:layout_marginBottom="25dp" />
+                    android:text="Clientes"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginStart="12dp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnClientes"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnProductos"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_gallery"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Clientes"
-                    android:drawableLeft="@android:drawable/ic_menu_myplaces"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Productos"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnProductos"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_send"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Productos"
-                    android:drawableLeft="@android:drawable/ic_menu_gallery"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Pedidos"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnPedidos"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnPromociones"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_manage"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Pedidos"
-                    android:drawableLeft="@android:drawable/ic_menu_send"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Promociones"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnPromociones"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnValoraciones"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_info_details"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Promociones"
-                    android:drawableLeft="@android:drawable/ic_menu_manage"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Valoraciones"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnValoraciones"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_sort_by_size"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Valoraciones"
-                    android:drawableLeft="@android:drawable/ic_menu_info_details"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Categorias"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnCategorias"
-                    android:layout_width="match_parent"
+        <LinearLayout
+                android:id="@+id/btnDetallesProducto"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
+
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+
+                    android:src="@android:drawable/ic_menu_view"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Categorías"
-                    android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Detalles del producto"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
+        </LinearLayout>
 
 
-            <Button
-                    android:id="@+id/btnDetallesProducto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="  Detalles del producto"
-                    android:drawableLeft="@android:drawable/ic_menu_view"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+        <LinearLayout
+                android:id="@+id/btnVendedores"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/item_normal"
+                android:layout_marginBottom="14dp">
 
+            <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
 
-            <Button
-                    android:id="@+id/btnVendedores"
-                    android:layout_width="match_parent"
+                    android:src="@drawable/outline_account_box_24"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vendedores"
-                    android:drawableLeft="@drawable/outline_account_box_24"
-                    android:drawablePadding="12dp"
-                    android:paddingStart="20dp"
-                    android:background="@drawable/btn_menu"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp"/>
-
-
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:textSize="16sp"/>
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cerrar sesión"
+                app:backgroundTint="@color/azul_app"
+                android:textColor="@android:color/white"
+                app:cornerRadius="16dp"/>
+
 
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

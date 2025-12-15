@@ -9,10 +9,31 @@ open class MenuPrincipalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+        val nombre = prefs.getString("nombre", "Usuario")
+        binding.btnCerrarSesion.setOnClickListener {
+
+
+            val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+            prefs.edit().clear().apply()
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
+            finish()
+        }
+
+
+        binding.txtNombreUsuario.text = nombre
 
 
         binding.btnProductos.setOnClickListener {
@@ -30,7 +51,7 @@ open class MenuPrincipalActivity : AppCompatActivity() {
         }
 
         binding.btnDetallesProducto.setOnClickListener {
-            startActivity(Intent(this, DetalleProdcutoActivity::class.java))
+            startActivity(Intent(this, DetalleProductoActivity::class.java))
         }
 
         binding.btnValoraciones.setOnClickListener {

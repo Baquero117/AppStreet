@@ -1,23 +1,44 @@
 package com.example.appinterface
 
-import com.example.appinterface.DataClass.Producto
-import com.example.appinterface.Api.RetrofitInstance
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.appinterface.Adapter.ProductoAdapter
+import com.example.appinterface.Api.RetrofitInstance
+import com.example.appinterface.DataClass.Producto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProductoActivity : MenuPrincipalActivity() {
-    private lateinit var producto: Producto
+class ProductoActivity : AppCompatActivity() {
+
+    private var listaProductos = listOf<Producto>()
+    private lateinit var productoAdapter: ProductoAdapter
+
+
+    private var imagenSeleccionadaUri: String? = null
+
+
+    private val seleccionarImagen =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let {
+                contentResolver.takePersistableUriPermission(
+                    it,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+
+                imagenSeleccionadaUri = it.toString()
+                findViewById<ImageView>(R.id.imgPreview).setImageURI(it)
+            }
+        }
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,39 +46,47 @@ class ProductoActivity : MenuPrincipalActivity() {
         setContentView(R.layout.activity_producto)
 
 
-
-        val btnVolver = findViewById<Button>(R.id.btnVolver)
-        btnVolver.setOnClickListener {
-            val intent = Intent(this, MenuPrincipalActivity::class.java)
-            startActivity(intent)
+        findViewById<Button>(R.id.btnVolver).setOnClickListener {
+            startActivity(Intent(this, MenuPrincipalActivity::class.java))
             finish()
         }
-    }
 
-    fun crearProducto(v: View) {
-        val nombre = findViewById<EditText>(R.id.nombre)
-        val descripcion = findViewById<EditText>(R.id.descripcion)
-        val cantidad = findViewById<EditText>(R.id.cantidad)
-        val imagen = findViewById<EditText>(R.id.imagen)
-        val idVendedor = findViewById<EditText>(R.id.id_vendedor)
-        val estado = findViewById<EditText>(R.id.estado)
 
-        producto = Producto(
-            0,
-            nombre.text.toString(),
-            descripcion.text.toString(),
-            cantidad.text.toString().toInt(),
-            imagen.text.toString(),
-            idVendedor.text.toString().toInt(),
-            estado.text.toString()
+        findViewById<Button>(R.id.btnSeleccionarImagen).setOnClickListener {
+            seleccionarImagen.launch(arrayOf("image/*"))
+        }
+
+
+
+        findViewById<Button>(R.id.btnBuscarId).setOnClickListener {
+            buscarProductoPorId()
+        }
+
+
+        val recyclerView = findViewById<RecyclerView>(R.id.RecyProductos)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        productoAdapter = ProductoAdapter(
+            listOf(),
+            onEditar = { producto -> llenarCampos(producto) },
+            onEliminar = { producto -> eliminarProductoDirecto(producto) }
         )
 
-        if (nombre.text.isNotEmpty() && descripcion.text.isNotEmpty()) {
-            RetrofitInstance.api2kotlin.crearProducto(producto)
+        recyclerView.adapter = productoAdapter
+    }
+
+
+    fun crearProducto(v: View) {
+        val producto = obtenerProductoDesdeFormulario(0)
+
+        if (producto.nombre.isNotEmpty() && producto.descripcion.isNotEmpty()) {
+            RetrofitInstance.api2kotlin(this).crearProducto(producto)
                 .enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, "Producto creado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Producto creado", Toast.LENGTH_SHORT).show()
+                            limpiarFormulario()
+                            mostrarProductos(View(this@ProductoActivity))
                         } else {
                             Toast.makeText(applicationContext, "Error al crear producto", Toast.LENGTH_SHORT).show()
                         }
@@ -70,86 +99,141 @@ class ProductoActivity : MenuPrincipalActivity() {
         }
     }
 
+
     fun mostrarProductos(v: View) {
-        val recyclerView = findViewById<RecyclerView>(R.id.RecyProductos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        RetrofitInstance.api2kotlin.getProductos().enqueue(object : Callback<List<Producto>> {
-            override fun onResponse(call: Call<List<Producto>>, response: Response<List<Producto>>) {
-                if (response.isSuccessful) {
-                    val data = response.body()
-                    if (data != null && data.isNotEmpty()) {
-                        val adapter = ProductoAdapter(data)
-                        recyclerView.adapter = adapter
+        RetrofitInstance.api2kotlin(this).getProductos()
+            .enqueue(object : Callback<List<Producto>> {
+                override fun onResponse(
+                    call: Call<List<Producto>>,
+                    response: Response<List<Producto>>
+                ) {
+                    if (response.isSuccessful) {
+                        val data = response.body()
+                        if (!data.isNullOrEmpty()) {
+                            listaProductos = data
+                            productoAdapter.actualizarLista(data)
+                        } else {
+                            Toast.makeText(this@ProductoActivity, "No hay productos", Toast.LENGTH_SHORT).show()
+                        }
                     } else {
-                        Toast.makeText(this@ProductoActivity, "No hay productos disponibles", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ProductoActivity, "Error en la API", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    Toast.makeText(this@ProductoActivity, "Error en la respuesta de la API", Toast.LENGTH_SHORT).show()
                 }
-            }
 
-            override fun onFailure(call: Call<List<Producto>>, t: Throwable) {
-                Toast.makeText(this@ProductoActivity, "Error en la conexión con la API", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<List<Producto>>, t: Throwable) {
+                    Toast.makeText(this@ProductoActivity, "Error de conexión", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
+
+
+    fun buscarProductoPorId() {
+        val txtId = findViewById<EditText>(R.id.txtBuscarId)
+
+        if (txtId.text.isNullOrEmpty()) {
+            Toast.makeText(this, "Ingresa un ID", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val id = txtId.text.toString().toInt()
+        val productoEncontrado = listaProductos.find { it.id_producto == id }
+
+        if (productoEncontrado != null) {
+            productoAdapter.actualizarLista(listOf(productoEncontrado))
+        } else {
+            Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun llenarCampos(producto: Producto) {
+        findViewById<EditText>(R.id.id_producto).setText(producto.id_producto.toString())
+        findViewById<EditText>(R.id.nombre).setText(producto.nombre)
+        findViewById<EditText>(R.id.descripcion).setText(producto.descripcion)
+        findViewById<EditText>(R.id.cantidad).setText(producto.cantidad.toString())
+        findViewById<EditText>(R.id.id_vendedor).setText(producto.id_vendedor.toString())
+        findViewById<EditText>(R.id.estado).setText(producto.estado)
+
+        // 📸 Imagen
+        imagenSeleccionadaUri = producto.imagen
+        Glide.with(this)
+            .load(producto.imagen)
+            .into(findViewById(R.id.imgPreview))
+    }
+
 
     fun actualizarProducto(v: View) {
-        val id = findViewById<EditText>(R.id.id_producto)
-        val nombre = findViewById<EditText>(R.id.nombre)
-        val descripcion = findViewById<EditText>(R.id.descripcion)
-        val cantidad = findViewById<EditText>(R.id.cantidad)
-        val imagen = findViewById<EditText>(R.id.imagen)
-        val idVendedor = findViewById<EditText>(R.id.id_vendedor)
-        val estado = findViewById<EditText>(R.id.estado)
+        val idTxt = findViewById<EditText>(R.id.id_producto)
 
-        if (!id.text.isNullOrEmpty()) {
-            val productoActualizado = Producto(
-                id.text.toString().toInt(),
-                nombre.text.toString(),
-                descripcion.text.toString(),
-                cantidad.text.toString().toInt(),
-                imagen.text.toString(),
-                idVendedor.text.toString().toInt(),
-                estado.text.toString()
-            )
-
-            RetrofitInstance.api2kotlin.actualizarProducto(id.text.toString().toInt(), productoActualizado)
-                .enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, "Producto actualizado correctamente", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(applicationContext, "Error al actualizar producto", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
-                    }
-                })
+        if (idTxt.text.isNullOrEmpty()) {
+            Toast.makeText(this, "Ingresa un ID", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val productoActualizado =
+            obtenerProductoDesdeFormulario(idTxt.text.toString().toInt())
+
+        RetrofitInstance.api2kotlin(this)
+            .actualizarProducto(productoActualizado.id_producto, productoActualizado)
+            .enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(applicationContext, "Producto actualizado", Toast.LENGTH_SHORT).show()
+                        limpiarFormulario()
+                        mostrarProductos(View(this@ProductoActivity))
+                    } else {
+                        Toast.makeText(applicationContext, "Error al actualizar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
-    fun eliminarProducto(v: View) {
-        val id = findViewById<EditText>(R.id.id_producto)
 
-        if (!id.text.isNullOrEmpty()) {
-            RetrofitInstance.api2kotlin.eliminarProducto(id.text.toString().toInt())
-                .enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, "Producto eliminado correctamente", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(applicationContext, "Error al eliminar producto", Toast.LENGTH_SHORT).show()
-                        }
+    private fun eliminarProductoDirecto(producto: Producto) {
+        RetrofitInstance.api2kotlin(this).eliminarProducto(producto.id_producto)
+            .enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(applicationContext, "Producto eliminado", Toast.LENGTH_SHORT).show()
+                        mostrarProductos(View(this@ProductoActivity))
+                    } else {
+                        Toast.makeText(applicationContext, "Error al eliminar", Toast.LENGTH_SHORT).show()
                     }
+                }
 
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
-                    }
-                })
-        }
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Toast.makeText(applicationContext, "Error de conexión", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+
+    private fun obtenerProductoDesdeFormulario(id: Int): Producto {
+        return Producto(
+            id,
+            findViewById<EditText>(R.id.nombre).text.toString(),
+            findViewById<EditText>(R.id.descripcion).text.toString(),
+            findViewById<EditText>(R.id.cantidad).text.toString().toInt(),
+            imagenSeleccionadaUri ?: "",
+            findViewById<EditText>(R.id.id_vendedor).text.toString().toInt(),
+            findViewById<EditText>(R.id.estado).text.toString()
+        )
+    }
+
+    private fun limpiarFormulario() {
+        findViewById<EditText>(R.id.id_producto).setText("")
+        findViewById<EditText>(R.id.nombre).setText("")
+        findViewById<EditText>(R.id.descripcion).setText("")
+        findViewById<EditText>(R.id.cantidad).setText("")
+        findViewById<EditText>(R.id.id_vendedor).setText("")
+        findViewById<EditText>(R.id.estado).setText("")
+        findViewById<ImageView>(R.id.imgPreview)
+
+
+        imagenSeleccionadaUri = null
     }
 }

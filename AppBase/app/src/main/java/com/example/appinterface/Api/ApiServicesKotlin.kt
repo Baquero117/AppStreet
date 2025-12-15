@@ -15,8 +15,16 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-
+import com.example.appinterface.DataClass.LoginRequest
+import com.example.appinterface.DataClass.LoginResponse
 interface ApiServicesKotlin {
+
+
+    @POST("auth/login")
+    fun login(
+        @Body request: LoginRequest
+    ): Call<LoginResponse>
+
 
 
 

@@ -16,6 +16,7 @@
             android:layout_height="wrap_content">
 
 
+        <!-- TÍTULO -->
         <TextView
                 android:id="@+id/tvTituloValoracion"
                 android:layout_width="match_parent"
@@ -28,6 +29,7 @@
                 android:paddingBottom="18dp" />
 
 
+        <!-- CARD PRINCIPAL -->
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,135 +45,38 @@
                     android:layout_height="wrap_content">
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="ID Valoración"
-                        app:boxStrokeColor="@android:color/holo_blue_dark">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_valoracion"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="ID Cliente">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_cliente"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="ID Producto">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_producto"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Calificación (1-5)">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/calificacion"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Comentario">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/comentario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:minLines="2"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Fecha de valoración (YYYY-MM-DD)">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/fecha_valoracion"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="date"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
+
+
+
+        <!-- BUSCADOR POR ID -->
         <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="16dp">
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+            <EditText
+                    android:id="@+id/txtBuscarId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Buscar por ID"
+                    android:inputType="number" />
 
             <Button
-                    android:text="Crear"
-                    android:onClick="crearValoracion"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:id="@+id/btnBuscarId"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#4CAF50"
-                    android:textColor="#FFF"
-                    android:layout_margin="5dp"/>
-
-
-
-            <Button
-                    android:text="Actualizar"
-                    android:onClick="actualizarValoracion"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FFC107"
-                    android:textColor="#FFF"
-                    android:layout_margin="5dp"/>
-
-            <Button
-                    android:text="Eliminar"
-                    android:onClick="eliminarValoracion"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#F44336"
-                    android:textColor="#FFF"
-                    android:layout_margin="5dp"/>
+                    android:text="Buscar" />
         </LinearLayout>
 
 
+        <!-- BOTÓN VOLVER -->
         <Button
                 android:id="@+id/btnVolver"
                 android:layout_width="match_parent"
@@ -182,6 +87,7 @@
                 android:layout_marginBottom="20dp" />
 
 
+        <!-- SECCIÓN LISTADO -->
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -206,14 +112,17 @@
                     android:onClick="mostrarValoraciones"
                     android:backgroundTint="#2196F3"
                     android:textColor="#FFF"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp" />
         </LinearLayout>
 
+
+        <!-- RECYCLER -->
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyValoraciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                android:layout_marginBottom="30dp" />
 
     </LinearLayout>
 </ScrollView>

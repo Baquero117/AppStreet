@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <!-- ID Cliente -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                             android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Nombre -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                             android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Apellido -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                             android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Correo -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                             android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Teléfono -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                             android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Dirección -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                             android:inputType="textPostalAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Contraseña -->
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Botones CRUD -->
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -182,6 +182,29 @@
                     android:textColor="#FFF"
                     android:layout_margin="5dp"/>
         </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+            <EditText
+                    android:id="@+id/txtBuscarId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Buscar por ID"
+                    android:inputType="number" />
+
+            <Button
+                    android:id="@+id/btnBuscarId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar" />
+
+        </LinearLayout>
+
 
         <Button
                 android:id="@+id/btnVolver"
@@ -225,7 +248,9 @@
                 android:id="@+id/RecyClientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                android:layout_marginBottom="30dp"
+        />
 
     </LinearLayout>
 </ScrollView>

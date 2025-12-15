@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="10dp"
+                                   app:cardElevation="6dp"
+                                   app:cardCornerRadius="12dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/txtid_cliente"
+                android:text="Id_cliente"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        <TextView
+                android:id="@+id/txtNombre"
+                android:text="Nombre"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtCorreo"
+                android:text="Correo"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtTelefono"
+                android:text="Teléfono"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/txtDireccion"
+                android:text="Dirección"
+                android:textColor="#555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+            <Button
+                    android:id="@+id/btnEditar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:backgroundTint="#FFC107"
+                    android:textColor="#FFF"
+                    android:layout_marginEnd="10dp"/>
+
+            <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:backgroundTint="#F44336"
+                    android:textColor="#FFF"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
